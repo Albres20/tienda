@@ -81,10 +81,10 @@ public class administradorModificar extends javax.swing.JFrame {
         modificarAdminModificar.setForeground(new java.awt.Color(255, 255, 255));
         modificarAdminModificar.setText("<html><p>Buscar/</p><p>Modificar</p></html>");
 
-        pago.setBackground(new java.awt.Color(0, 0, 0));
-        pago.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pago.setForeground(new java.awt.Color(255, 255, 255));
-        pago.setText("Pagos");
+        pagosAdminModificar.setBackground(new java.awt.Color(0, 0, 0));
+        pagosAdminModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pagosAdminModificar.setForeground(new java.awt.Color(255, 255, 255));
+        pagosAdminModificar.setText("Pagos");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -107,7 +107,7 @@ public class administradorModificar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(registrarAdminModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(modificarAdminModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pagosAdminModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +131,7 @@ public class administradorModificar extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(modificarAdminModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pago, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pagosAdminModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonSalirAdminModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -300,6 +300,11 @@ public class administradorModificar extends javax.swing.JFrame {
         barraBusquedaAdmMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 barraBusquedaAdmModActionPerformed(evt);
+            }
+        });
+        barraBusquedaAdmMod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                barraBusquedaAdmModKeyTyped(evt);
             }
         });
 
@@ -480,6 +485,23 @@ public class administradorModificar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_campoTelefonoAdminModKeyTyped
 
+    private void barraBusquedaAdmModKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barraBusquedaAdmModKeyTyped
+          char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo números");
+        }
+        
+        if(barraBusquedaAdmMod.getText().length()>7){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(rootPane,"El rango de caracteres debe estar entre 3 y 100");
+        }
+    }//GEN-LAST:event_barraBusquedaAdmModKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -598,7 +620,7 @@ class userSilueta extends JPanel
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     public static final javax.swing.JButton modificarAdminModificar = new javax.swing.JButton();
-    public static final javax.swing.JButton pago = new javax.swing.JButton();
+    public static final javax.swing.JButton pagosAdminModificar = new javax.swing.JButton();
     public static final javax.swing.JButton registrarAdminModificar = new javax.swing.JButton();
     // End of variables declaration//GEN-END:variables
 }

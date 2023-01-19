@@ -68,6 +68,11 @@ public class logueo extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(72, 104, 218));
 
         password.setBackground(new java.awt.Color(150, 225, 241));
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
 
         user.setBackground(new java.awt.Color(150, 225, 241));
         user.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -249,6 +254,10 @@ public class logueo extends javax.swing.JFrame {
     private void userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_userKeyTyped
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
 
     /**
      * @param args the command line arguments

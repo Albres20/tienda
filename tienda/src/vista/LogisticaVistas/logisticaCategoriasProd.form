@@ -85,13 +85,16 @@
                   <EmptySpace min="0" pref="257" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botonGuardarLogisiticaCategorias" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botonGuardarLogisiticaCategorias" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -316,7 +319,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botonSalirLogisticaModifProd" min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="botonSalirLogisticaCategProd" min="-2" pref="56" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -357,7 +360,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="categoria" min="-2" pref="57" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botonSalirLogisticaModifProd" min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="botonSalirLogisticaCategProd" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -485,7 +488,7 @@
             <Property name="text" type="java.lang.String" value="(Logisitica)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botonSalirLogisticaModifProd">
+        <Component class="javax.swing.JButton" name="botonSalirLogisticaCategProd">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="25"/>
           </AuxValues>

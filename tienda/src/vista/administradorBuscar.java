@@ -331,6 +331,13 @@ public class administradorBuscar extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(rootPane,"Ingresar solo números");
         }
+        
+        if(barraBusquedaAdmin.getText().length()>7){
+            getToolkit().beep();
+            evt.consume();
+            
+            JOptionPane.showMessageDialog(rootPane,"El rango de caracteres debe estar entre 3 y 100");
+        }
     }//GEN-LAST:event_barraBusquedaAdminKeyTyped
 
     /**

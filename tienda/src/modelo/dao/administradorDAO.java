@@ -80,7 +80,7 @@ public class administradorDAO implements crud<administradorDTO> {//NOSONAR
 
             ps.setString(1, c.getNombre());
             ps.setString(2, c.getApellido());
-            ps.setInt(3, c.getTelefono());
+            ps.setInt(3, c.getDNI());
             ps.setInt(4, c.getRoles_idrol());
             ps.setString(5, c.getCorreo());
             ps.setString(6, c.getContrasena());

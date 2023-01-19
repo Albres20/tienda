@@ -181,6 +181,9 @@ public class NewClass implements ActionListener {
         this.admM.registrarAdminModificar.addActionListener(this);
         this.admM.modificarAdminModificar.setActionCommand("modificarAdminModificar");//boton redirecciona a registrarModificar la misma ventana
         this.admM.modificarAdminModificar.addActionListener(this);
+        this.admM.pagosAdminModificar.setActionCommand("pagosAdminModificar");//boton redirecciona a registrarModificar la misma ventana
+        this.admM.pagosAdminModificar.addActionListener(this);
+        
         this.admM.botonSalirAdminModificar.setActionCommand("botonSalirAdminModificar");//boton redirecciona a login
         this.admM.botonSalirAdminModificar.addActionListener(this);
         //interfaz AdministradorPagoRegistro
@@ -277,6 +280,8 @@ public class NewClass implements ActionListener {
         this.lrprod.modElimProvLogRegProd.addActionListener(this);
         this.lrprod.categoriaLogisticaRegProducto.setActionCommand("categoriaLogisticaRegProducto");
         this.lrprod.categoriaLogisticaRegProducto.addActionListener(this);
+        this.lrprod.botonSalirLogRegProd.setActionCommand("botonSalirLogRegProd");
+        this.lrprod.botonSalirLogRegProd.addActionListener(this);
 
         //interfaz logisiticaModificarProd        
         this.lmproducto.btnBusquedaLogisiticaProducto.setActionCommand("btnBusquedaLogisiticaProducto");
@@ -307,6 +312,8 @@ public class NewClass implements ActionListener {
         this.lcproducto.modProdLogCat.addActionListener(this);
         this.lcproducto.botonGuardarLogisiticaCategorias.setActionCommand("botonGuardarLogisiticaCategorias");
         this.lcproducto.botonGuardarLogisiticaCategorias.addActionListener(this);
+        this.lcproducto.botonSalirLogisticaCategProd.setActionCommand("botonSalirLogisticaCategProd");
+        this.lcproducto.botonSalirLogisticaCategProd.addActionListener(this);
         //añadiendo addMouseListener a tabla
         admPM.tablasbMEAdminModificar.addMouseListener(new escuchaTablaPago());
         //---Inicio--- Interfaces Cajero//
@@ -541,7 +548,7 @@ public class NewClass implements ActionListener {
             for (administradorDTO customer : customerList) {
 
                 Object[] datos = new Object[6];
-                JButton b1 = new JButton();
+                JButton b1 = new JButton("Modificar");
                 datos[0] = customer.getId();
                 datos[1] = customer.getDNI();
                 datos[2] = customer.getNombre();
@@ -568,7 +575,7 @@ public class NewClass implements ActionListener {
             modelo.addColumn("ACCIONES");
             admB.tablaBusquedaAdmin.setModel(modelo);
             Object[] datos = new Object[6];
-            JButton b1 = new JButton();
+            JButton b1 = new JButton("Modificar");
             for (administradorDTO customer : customerList) {
 
                 datos[0] = customer.getId();
@@ -614,6 +621,11 @@ public class NewClass implements ActionListener {
             admB.setVisible(true);
 
         }
+        if(comando.equals("pagosAdminModificar")){
+            admM.dispose();
+            admPM.setVisible(true);
+            
+        }
         if (comando.equals("botonSalirAdminModificar")) { //redirecciona de modifcar admin a registrar admin 
             admM.dispose();
             view.setVisible(true);
@@ -627,27 +639,34 @@ public class NewClass implements ActionListener {
             adm.setVisible(true);
         }
         if (comando.equals("botonBusquedaAdministrador")) {
-            administradorDTO admDTO = a.read(Integer.valueOf(admB.barraBusquedaAdmin.getText()));
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("N°");
-            modelo.addColumn("DNI");
-            modelo.addColumn("NOMBRES");
-            modelo.addColumn("APELLIDOS");
-            modelo.addColumn("ROL");
-            modelo.addColumn("ACCIONES");
-            admB.tablaBusquedaAdmin.setModel(modelo);
-            Object[] datos = new Object[6];
-            JButton b1 = new JButton();
-            datos[0] = admDTO.getId();
-            datos[1] = admDTO.getDNI();
-            datos[2] = admDTO.getNombre();
-            datos[3] = admDTO.getApellido();
-            datos[4] = admDTO.getRoles_idrol();
-            datos[5] = b1;
-            modelo.addRow(datos);
-            admB.tablaBusquedaAdmin.addMouseListener(new EscuchaMouse());
+            if(admB.barraBusquedaAdmin.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Campo Vacío");
+            }
+            else{
+                administradorDTO admDTO = a.read(Integer.valueOf(admB.barraBusquedaAdmin.getText()));
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo.addColumn("N°");
+                modelo.addColumn("DNI");
+                modelo.addColumn("NOMBRES");
+                modelo.addColumn("APELLIDOS");
+                modelo.addColumn("ROL");
+                modelo.addColumn("ACCIONES");
+                admB.tablaBusquedaAdmin.setModel(modelo);
+                Object[] datos = new Object[6];
+                JButton b1 = new JButton();
+                datos[0] = admDTO.getId();
+                datos[1] = admDTO.getDNI();
+                datos[2] = admDTO.getNombre();
+                datos[3] = admDTO.getApellido();
+                datos[4] = admDTO.getRoles_idrol();
+                datos[5] = b1;
+                modelo.addRow(datos);
+                admB.tablaBusquedaAdmin.addMouseListener(new EscuchaMouse());
 
-            //System.out.println("vista"+String.valueOf(view.user)+","+"controaldor"+String.valueOf(view.password));
+
+                //System.out.println("vista"+String.valueOf(view.user)+","+"controaldor"+String.valueOf(view.password));
+            }
+            
         }
 
         if (comando.equals("botonGuardarAdminModif")) {
@@ -661,7 +680,37 @@ public class NewClass implements ActionListener {
             //setear vacio 
             admM.dispose();
             admB.setVisible(true);
+            
+            //New
+             List<administradorDTO> customerList = null;
+            admB.setVisible(true);
+            adm.dispose();
+            customerList = a.readAll();
+            admB.tablaBusquedaAdmin.setDefaultRenderer(Object.class, new Render());
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("N°");
+            modelo.addColumn("DNI");
+            modelo.addColumn("NOMBRES");
+            modelo.addColumn("APELLIDOS");
+            modelo.addColumn("ROL");
+            modelo.addColumn("ACCIONES");
+            admB.tablaBusquedaAdmin.setModel(modelo);
+            Object[] datos = new Object[6];
+            JButton b1 = new JButton("Modificar");
+            for (administradorDTO customer : customerList) {
 
+                datos[0] = customer.getId();
+                datos[1] = customer.getDNI();
+                datos[2] = customer.getNombre();
+                datos[3] = customer.getApellido();
+                datos[4] = customer.getRoles_idrol();
+                datos[5] = b1;
+                modelo.addRow(datos);
+
+            }
+            admB.barraBusquedaAdmin.setText("");
+            admB.tablaBusquedaAdmin.addMouseListener(new EscuchaMouse());
+            //
         }
         if (comando.equals("pagosAdminBuscar")) {
             admB.dispose();
@@ -1333,7 +1382,7 @@ public class NewClass implements ActionListener {
             
         }
         if (comando.equals("botonSalirLogRegProd")) {
-            lrp.dispose();
+            lmp.dispose();
             view.setVisible(true);
             view.user.setText("");
             view.password.setText("");
@@ -1459,6 +1508,12 @@ public class NewClass implements ActionListener {
         if (comando.equals("categoriaLogisticaRegProducto")) {
              lrprod.dispose();
              lcproducto.setVisible(true);
+        }
+        if (comando.equals("botonSalirLogRegProd")) {
+            lrprod.dispose();
+            view.setVisible(true);
+            view.user.setText("");
+            view.password.setText("");
         }
         //logisticaModificarProdcuto
         if (comando.equals("btnBusquedaLogisiticaProducto")) {
@@ -1700,6 +1755,12 @@ jDateChooser1.setDate(date);
                 }
 
             }
+        }
+        if(comando.equals("botonSalirLogisticaCategProd")){
+            lcproducto.dispose();
+            view.setVisible(true);
+            view.user.setText("");
+            view.password.setText("");
         }
         
         //---Inicio--- Cajero Venta//     
